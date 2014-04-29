@@ -420,6 +420,13 @@ const AP_Param::Info var_info[] PROGMEM = {
     // @User: Standard 
     GSCALAR(thermal_max_alt,  "THERMAL_MAX_ALT", 1000),
   
+    // @Param: THERMAL_VSPEED
+    // @DisplayName: Vertical v-speed
+    // @Description: Rate of climb to trigger themalling speed
+    // @Units: m/s
+    // @Range: 0 10
+    // @User: Advanced 
+    GSCALAR(thermal_vspeed,  "THERMAL_VSPEED", THERMAL_VSPEED),
   
     // @Param: LIM_ROLL_CD
     // @DisplayName: Maximum Bank Angle

@@ -50,7 +50,7 @@
       }
         else { 
             if (abs(th_loiter_radius) <= abs(g.loiter_radius)) l_radius_vector = (l_radius_vector) * (-1);
-            if (abs(th_loiter_radius) > 75) l_radius_vector = (l_radius_vector) * (-1);
+            if (abs(th_loiter_radius) > (abs(g.loiter_radius) + 60) ) l_radius_vector = (l_radius_vector) * (-1);
             if (g.loiter_radius < 0) th_loiter_radius = th_loiter_radius - l_radius_vector;
             else th_loiter_radius = th_loiter_radius + l_radius_vector;
              }
