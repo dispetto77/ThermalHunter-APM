@@ -30,11 +30,14 @@
             soaring_debouncer = true;
             
         if (g.loiter_radius < 0) {
-            g.loiter_radius = g.loiter_radius + 1;
+            th_loiter_radius = th_loiter_radius + 1;
             } else {
-             g.loiter_radius = g.loiter_radius - 1;
+            th_loiter_radius = th_loiter_radius - 1;
             }
-            return;
+            
+         l_radius_vector = (l_radius_vector) * (-1) ;
+         
+         return;
        }
        
        throttle_suppressed = false;     
@@ -46,13 +49,14 @@
        still_in_thermal = false;
       }
         else { 
-            if (g.loiter_radius < 0) {
-             g.loiter_radius = g.loiter_radius - 1;
-            } else {
-             g.loiter_radius = g.loiter_radius + 1;
-            }
-      }
+            if (abs(th_loiter_radius) <= abs(g.loiter_radius)) l_radius_vector = (l_radius_vector) * (-1);
+            if (abs(th_loiter_radius) > 75) l_radius_vector = (l_radius_vector) * (-1);
+            if (g.loiter_radius < 0) th_loiter_radius = th_loiter_radius - l_radius_vector;
+            else th_loiter_radius = th_loiter_radius + l_radius_vector;
+             }
     }
    
 
   }
+  
+  

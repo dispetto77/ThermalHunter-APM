@@ -403,16 +403,23 @@ const AP_Param::Info var_info[] PROGMEM = {
     // @Description: Toggles the soaring mode on and off
     // @Units: boolean
     // @Range: 0 1
-    // @User: Advanced
-    // GSCALAR(soar_active,    "SOAR_ACTIVE",   SOAR_ACTIVE),
+    // @User: Standard
+    GSCALAR(soar_active,    "SOAR_ACTIVE",   SOAR_ACTIVE),
      
-    // @Param: THERMAL_VSPEED
-    // @DisplayName: Vertical v-speed
-    // @Description: Rate of climb to trigger themalling speed
-    // @Units: m/s
-    // @Range: 0 10
-    // @User: Advanced 
-    GSCALAR(thermal_vspeed,  "THERMAL_VSPEED", THERMAL_VSPEED),
+    // @Param: THERMAL_MIN_ALT
+    // @DisplayName: THERMAL MIN ACTIVATION ALTITUDE
+    // @Description: 
+    // @Units: mt
+    // @User: Standard 
+    GSCALAR(thermal_min_alt,  "THERMAL_MIN_ALT", 150),
+   
+    // @Param: THERMAL MAX ACTIVATION ALTITUDE
+    // @DisplayName: Thermal max altitude
+    // @Description: 
+    // @Units: mt
+    // @User: Standard 
+    GSCALAR(thermal_max_alt,  "THERMAL_MAX_ALT", 1000),
+  
   
     // @Param: LIM_ROLL_CD
     // @DisplayName: Maximum Bank Angle

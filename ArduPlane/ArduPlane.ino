@@ -328,10 +328,11 @@ static uint32_t last_heartbeat_ms;
 static uint32_t ch3_failsafe_timer = 0;
 
 
-static int32_t thermal_hunting_min_altitude = 15000;  //min 150 mt
-static int32_t thermal_hunting_max_altitude = 100000;  //max 1000 mt
-
-
+static int32_t thermal_hunting_min_altitude = g.thermal_min_alt * 100;  //defauld min 150 mt
+static int32_t thermal_hunting_max_altitude = g.thermal_max_alt * 100;  //default max 1000 mt
+static int8_t th_loiter_radius = g.loiter_radius;
+static int8_t l_radius_vector = 1;
+ 
 ////////////////////////////////////////////////////////////////////////////////
 // LED output
 ////////////////////////////////////////////////////////////////////////////////
@@ -841,15 +842,17 @@ static void medium_loop()
         // -------------------------------
         read_control_switch();
 
-        // calculate the plane's desired bearing
-        // -------------------------------------
-        navigate();
-       
         //Search for Thermal Soaring
         #if THERMAL_HUNTING_MODE != DISABLED
         ThermalHunting();
         #endif
         
+        
+        // calculate the plane's desired bearing
+        // -------------------------------------
+        navigate();
+       
+       
         break;
 
     // command processing

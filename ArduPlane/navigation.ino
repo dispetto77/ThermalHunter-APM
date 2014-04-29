@@ -148,12 +148,12 @@ static void update_loiter()
 {
     float power;
 
-    if(wp_distance <= g.loiter_radius) {
-        power = float(wp_distance) / float(g.loiter_radius);
+    if(wp_distance <= th_loiter_radius) {
+        power = float(wp_distance) / float(th_loiter_radius);
         power = constrain(power, 0.5, 1);
         nav_bearing_cd += 9000.0 * (2.0 + power);
-    } else if(wp_distance < (g.loiter_radius + LOITER_RANGE)) {
-        power = -((float)(wp_distance - g.loiter_radius - LOITER_RANGE) / LOITER_RANGE);
+    } else if(wp_distance < (th_loiter_radius + LOITER_RANGE)) {
+        power = -((float)(wp_distance - th_loiter_radius - LOITER_RANGE) / LOITER_RANGE);
         power = constrain(power, 0.5, 1);                               //power = constrain(power, 0, 1);
         nav_bearing_cd -= power * 9000;
     } else{
