@@ -13,6 +13,17 @@
  *  version 2.1 of the License, or (at your option) any later version.
  */
 
+/*
+ *  ArduSoar support functions
+ *
+ *  Peter Braswell 
+ * 
+ *  This firmware is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU Lesser General Public
+ *  License as published by the Free Software Foundation; either
+ *  version 2.1 of the License, or (at your option) any later version.
+ */
+
 ////////////////////////////////////////////////////////////////////////////////
 // Header includes
 ////////////////////////////////////////////////////////////////////////////////
@@ -567,6 +578,8 @@ static struct   Location home;
 static bool home_is_set;
 // The location of the previous waypoint.  Used for track following and altitude ramp calculations
 static struct   Location prev_WP;
+// The location of the next waypoint before switch in Thermal.  
+static struct   Location stored_WP;
 // The plane's current location
 static struct   Location current_loc;
 // The location of the current/active waypoint.  Used for altitude ramp, track following and loiter calculations.
@@ -842,11 +855,7 @@ static void medium_loop()
         // -------------------------------
         read_control_switch();
 
-        //Search for Thermal Soaring
-        #if THERMAL_HUNTING_MODE != DISABLED
-        ThermalHunting();
-        #endif
-        
+          
         
         // calculate the plane's desired bearing
         // -------------------------------------

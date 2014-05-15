@@ -1,7 +1,7 @@
 
  static void ThermalHunting()
  {
-    static FlightMode previous_control_mode;
+    // static FlightMode previous_control_mode;
     
     static bool still_in_thermal;
     
@@ -16,18 +16,17 @@
           soaring_debouncer = true;
           return;
           }
-     prev_WP = next_WP;
+     stored_WP = next_WP;
      set_mode(LOITER);
      throttle_suppressed = true;
-     previous_control_mode = AUTO;
+     // previous_control_mode = AUTO;
      still_in_thermal = true;
      m_thermal_timer = (5000 + millis());
      soaring_debouncer = false;
-     return;
       }
     }
     
-    if(control_mode == LOITER && previous_control_mode == AUTO && still_in_thermal == true)
+    if(control_mode == LOITER && still_in_thermal == true)
     { 
      if (read_climb_rate() < 0 || current_loc.alt >= thermal_hunting_max_altitude  || current_loc.alt < thermal_hunting_min_altitude) {
          
@@ -40,18 +39,18 @@
             th_loiter_radius = th_loiter_radius - 1;
             }
             
-         l_radius_vector = (l_radius_vector) * (-1) ;
+         l_radius_vector = ( l_radius_vector * (-1) ) ;
          
-         m_thermal_timer = (5000 + millis());
+         m_thermal_timer = ( 5000 + millis() );
          
          return;
        }
        if(millis() > (m_thermal_timer)) {
        throttle_suppressed = false;     
+       // prev_WP = current_loc;
+       // previous_control_mode = LOITER;
+       next_WP = stored_WP;
        set_mode(AUTO);
-       next_WP = prev_WP;
-       prev_WP = current_loc;
-       previous_control_mode = LOITER;
        soaring_debouncer = false;
        still_in_thermal = false;
        return;

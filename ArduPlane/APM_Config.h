@@ -13,17 +13,9 @@
 
 // Comment out HIL_MODE for none simulated compile
 #define HIL_MODE            HIL_MODE_ATTITUDE
-#define SOAR_ACTIVE 1     // Default - enabled
-#define THERMAL_VSPEED 2 // Default - 2 m/s
+#define SOAR_ACTIVE 1       // Default - enabled
+#define THERMAL_VSPEED 2    // Default - 2 m/s
 
-//
-#if SOAR_ACTIVE == 0
-#define THERMAL_HUNTING_MODE DISABLED
-#else
-#define THERMAL_HUNTING_MODE  FLIGHT_MODE_AUTO
-//#define THERMAL_HUNTING_MODE DISABLED
-//#define THERMAL_HUNTING_MODE FLIGHT_MODE_AUTO
-#endif
 
 /*
  *  // HIL_MODE SELECTION

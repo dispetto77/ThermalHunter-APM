@@ -34,7 +34,10 @@ static void read_control_switch()
         oldSwitchPosition = switchPosition;
         prev_WP = current_loc;
     }
-
+        else{
+        if( g.soar_active == 1 ) ThermalHunting();    //Search for Thermal Soaring
+        }
+         
     if (g.reset_mission_chan != 0 &&
         hal.rcin->read(g.reset_mission_chan-1) > RESET_SWITCH_CHAN_PWM) {
         // reset to first waypoint in mission
